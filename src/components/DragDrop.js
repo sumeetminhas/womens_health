@@ -20,49 +20,53 @@ export const DragDrop = () => {
   const [draggableItems, setDraggableItems] = useState([
     {
       id: "cervix",
-      content: (
-        <Draggable className="cervix" id="cervix">
-          <img src={cervix} alt='cervix' />
-      </Draggable>
-      )
+      src: cervix,
+      position: {x: 0, y: 0}
     },
     {
       id: "ft_left",
-      content: (
-        <Draggable className="ft_left" id="ft_left">
-          <img src={ft_left} alt='ft' />
-        </Draggable>
-      )
+      src: ft_left,
+      position: {x: 0, y: 0}
     },
   ]);
 
-  // const draggableMarkup = [(
-  //   <Draggable className="cervix" id="cervix">
-  //     <img src={cervix} alt='cervix' />
-  //   </Draggable>
-  // ),
-  // ( <Draggable className="ft_left" id="ft_left">
-  //     <img src={ft_left} alt='ft' />
-  //   </Draggable>
-  // )];
 
   function handleDragEnd(event) {
-    if (event.over && event.over.id === 'droppable') {
-      setIsDropped(true);
-      const updateItems = draggableItems.filter(item => item.id !== event.active.id)
-      console.log("event.active.id", event.active.id)
-      setDraggableItems(updateItems);
+    console.log("event", event.activatorEvent.target.getBoundingClientRect())
+    const newState = {
+      id: event.active.id,
+      src: draggableItems.find((item) => item.id === event.active.id).src,
+      position: {x: event.delta.x, y: event.delta.y}
     }
+
+    setDraggableItems([
+      ...draggableItems.filter((item) => item.id !== event.active.id),
+      newState
+    ])
+
+    // if (event.over && event.over.id === 'droppable') {
+    //   setIsDropped(true);
+    //   // const updateItems = draggableItems.filter(item => item.id !== event.active.id)
+    //   // console.log("event.active.id", event.active.id)
+    //   // setDraggableItems(updateItems);
+    //   setDraggableItems(prevItems => prevItems.filter(item => item.id !== event.active.id))
+    // }
   }
   
     return (
       <DndContext onDragEnd={handleDragEnd}>
-      {/* {!isDropped ? draggableItems : null} */}
-      {draggableItems.map(item => item.content)}
-      <Droppable>
-        {isDropped ? draggableItems.content : (<div className="custom-box"></div>)}
-      </Droppable>
-    </DndContext>
+        {/* {!isDropped ? draggableItems : null} */}
+        {draggableItems.map(item => (
+          <Draggable key={item.id} id={item.id}  position={item.position}>
+            <img src={item.src} alt={item.id} />
+          </Draggable>
+          )
+        )}
+        <Droppable>
+          {/* {isDropped ? draggableItems.content : (<div className="custom-box"></div>)} */}
+          {isDropped ? null : <div className="custom-box"></div>}
+        </Droppable>
+      </DndContext>
     )
 
 } 
