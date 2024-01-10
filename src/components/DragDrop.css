@@ -4,7 +4,7 @@
     display: block;
     max-width: 200px;
     max-height: 200px;
-  }
+  } 
   
   .thing img {
     max-width: 100%;
@@ -16,8 +16,8 @@
   }
 
 .custom-box {
-  width: 500px;
-  height: 500px;
+  width: 200px;
+  height: 200px;
   max-width: 100%;
   max-height: 100%;
   background-color: rgb(248, 146, 168);
@@ -25,8 +25,22 @@
 }
 
 .droppable-container {
+  /* height: 90vh;
+  max-height: 90%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blueviolet;
+}
+
+.grid-container {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  border: 5px solid black;
   height: 90vh;
   max-height: 90%;
+
 }
 
 .dragDropRow {
@@ -40,4 +54,17 @@
   width: 500px;
   height: 500px;
   border: 1px solid black;
+} 
+
+.correct-box {
+  width: 200px;
+  height: 200px;
+  max-width: 100%;
+  max-height: 100%;
+  background-color: green; /* Change the color for correct placements */
+  border: 20px solid darkgreen; /* Adjust the border color */
+}
+
+.grid-row {
+  display: flex;
 }

@@ -53,56 +53,157 @@ const initialPosition = [
   ...item,
   position: {
     x: i % 2 === 0 ? 0 : 200,
-    y: 200 * (i -(i % 2))
+    y: 100 * Math.floor(i / 2)
   }
 }))
 
-export const DragDrop = () => {
+// export const DragDrop = () => {
 
+//   const [isDropped, setIsDropped] = useState(false);
+//   const [draggableItems, setDraggableItems] = useState(initialPosition);
+
+
+//   function handleDragEnd(event) {
+//     // console.log("event", event)
+//     const item = draggableItems.find((item) => item.id === event.active.id)
+//     const newState = {
+//       ...item,
+//       position: {x: item.position.x + event.delta.x, y: item.position.y + event.delta.y}
+//     }
+//     setDraggableItems([
+//       ...draggableItems.filter((item) => item.id !== event.active.id),
+//       newState,
+//     ])
+//   }
+
+//   const gridLayout = Array.from({ length: 3}, (_, row) =>
+//     Array.from({ length: 3 }, (_, col) => row * 3 + col)
+//   );
+  
+//     return (
+//       <DndContext onDragEnd={handleDragEnd}>
+
+//         <div className="dragDropRow">
+//           <div className="pieces">
+//             {draggableItems.map(item => (
+//               <Draggable key={item.id} id={item.id}  position={item.position}>
+//                 <img src={item.src} alt={item.id} />
+//               </Draggable>
+//             ))}
+//         </div>
+
+//         <div className="grid-container">
+//           {gridLayout.map((row, rowIndex) => (
+//             <div key={rowIndex} className="grid-row">
+//               {row.map((colIndex) => (
+//                 <Droppable key={colIndex} id={draggableItems[rowIndex * 3 + colIndex]?.id}>
+//                   {isDropped ? null : <div className="custom-box"></div>}
+//                 </Droppable>
+//               ))}
+//             </div> 
+//           ))}
+//           </div>
+//         </div>
+
+//       </DndContext>
+//     )} 
+
+
+export const DragDrop = () => {
+  
+  //represents whether an item is dropped
   const [isDropped, setIsDropped] = useState(false);
+
+  //keeps track of the draggable items with their positions
   const [draggableItems, setDraggableItems] = useState(initialPosition);
 
+  //tracks whether each grid position had a correct item placed
+  const [correctPlacements, setCorrectPlacements] = useState(Array(9).fill(false))
 
+  //triggered when a drag operation ends
   function handleDragEnd(event) {
-    console.log("event", event)
-    const item = draggableItems.find((item) => item.id === event.active.id)
-    const newState = {
-      ...item,
-      position: {x: item.position.x + event.delta.x, y: item.position.y + event.delta.y}
+    let itemIndex
+    //finds the item being dragged
+    const item = draggableItems.find((item, i) => {
+      if (item.id === event.active.id) {
+        itemIndex = i
+        return true
+      }
+      return false
+    });
+    //calculates its new position based on the drag movement
+    const newPosition = {
+      x: item.position.x + event.delta.x,
+      y: item.position.y + event.delta.y,
+    };
+
+    // Check if the dropped position is correct by calculating grid index
+    // where item is dropped (droppedIndex) and checks if the item 
+    //matches the expected item in the grid from initialPosition
+    const droppedIndex = Math.floor(newPosition.y / 100) * 3 + Math.floor(newPosition.x / 200);
+    const isCorrect = item.id === initialPosition[droppedIndex]?.id;
+
+    //if correct, it updates the correctPlacements state to mark 
+    //that grid position as correct
+    if (isCorrect) {
+      const updatedPlacements = [...correctPlacements];
+      updatedPlacements[droppedIndex] = true;
+      setCorrectPlacements(updatedPlacements);
     }
 
-    setDraggableItems([
-      ...draggableItems.filter((item) => item.id !== event.active.id),
-      newState
-    ])
+    const newState = {
+      ...item,
+      position: newPosition,
+    };
 
-    // if (event.over && event.over.id === 'droppable') {
-    //   setIsDropped(true);
-    //   // const updateItems = draggableItems.filter(item => item.id !== event.active.id)
-    //   // console.log("event.active.id", event.active.id)
-    //   // setDraggableItems(updateItems);
-    //   setDraggableItems(prevItems => prevItems.filter(item => item.id !== event.active.id))
-    // }
+    // setDraggableItems([
+    //   ...draggableItems.filter((item) => item.id !== event.active.id),
+    //   newState,
+    // ]);
+    setDraggableItems(state => {
+      return state.toSpliced(itemIndex, 1, newState)
+    })
+
   }
+
+
+
+  //array that represents the 3x3 grid structure
+  const gridLayout = Array.from({ length: 3 }, (_, row) =>
+    // Array.from({ length: 3 }, (_, col) => row * 3 + col)
+    Array.from(Array(3).keys())
+  );
   
-    return (
-      <DndContext onDragEnd={handleDragEnd}>
-        <div className="dragDropRow">
-          <div className="pieces">
-            {draggableItems.map(item => (
-              <Draggable key={item.id} id={item.id}  position={item.position}>
-                <img src={item.src} alt={item.id} />
-              </Draggable>
-              )
-            )}
-          </div>
-          <Droppable>
-            {/* {isDropped ? draggableItems.content : (<div className="custom-box"></div>)} */}
-            {isDropped ? null : <div className="custom-box"></div>}
-          </Droppable>
+  // gridLayout.forEach((row, rowIndex) => {
+  //   row.forEach(colIndex => {
+  //     const item = draggableItems[(rowIndex * 3) + colIndex]
+  //     console.log("row index, col index, item", rowIndex, colIndex, item)
+  //   })
+  // })
+  return (
+    <DndContext onDragEnd={handleDragEnd}>
+      <div className="dragDropRow">
+        <div className="pieces">
+          {draggableItems.map((item) => (
+            <Draggable key={item.id} id={item.id} position={item.position}>
+              <img src={item.src} alt={item.id} />
+            </Draggable>
+          ))}
         </div>
-      </DndContext>
-    )
 
-} 
-
+        <div className="grid-container">
+          {gridLayout.map((row, rowIndex) => (
+            <div key={rowIndex} className="grid-row">
+              {row.map((colIndex) => (
+                <Droppable key={colIndex} id={draggableItems[(rowIndex * 3) + colIndex]?.id}>
+                  {correctPlacements[rowIndex * 3 + colIndex] ? (
+                    <div className="correct-box">{draggableItems[(rowIndex * 3) + colIndex]?.id}</div>) : (<div className="custom-box">{draggableItems[(rowIndex * 3) + colIndex]?.id}</div> )}
+                </Droppable>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </DndContext>
+  );
+};
