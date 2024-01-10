@@ -32,11 +32,11 @@ export const DragDrop = () => {
 
 
   function handleDragEnd(event) {
-    console.log("event", event.activatorEvent.target.getBoundingClientRect())
+    console.log("event", event)
+    const item = draggableItems.find((item) => item.id === event.active.id)
     const newState = {
-      id: event.active.id,
-      src: draggableItems.find((item) => item.id === event.active.id).src,
-      position: {x: event.delta.x, y: event.delta.y}
+      ...item,
+      position: {x: item.position.x + event.delta.x, y: item.position.y + event.delta.y}
     }
 
     setDraggableItems([
