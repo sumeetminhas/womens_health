@@ -122,6 +122,7 @@ export const DragDrop = () => {
 
   //triggered when a drag operation ends
   function handleDragEnd(event) {
+    console.log("over?", event.over)
     let itemIndex
     //finds the item being dragged
     const item = draggableItems.find((item, i) => {

@@ -1,4 +1,33 @@
-.puzzle-game {
-    border-style: solid;
-    color: black;
+.container {
+    display: flex;
+}
+
+h1 {
+    color: var(--HeadingText);
+    padding-top: 100px;
+}
+
+.games-container {
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 50px;
+    min-width: 50px; 
+}
+
+.puzzle-board {
+    color: var(--ButtonText);
+    text-decoration: none;
+    font-size: larger;
+    border: var(--ButtonBorder);
+    padding: 10px;
+    background-color: var(--Button);
+}
+
+.word-search {
+    color: var(--ButtonText);
+    text-decoration: none;
+    font-size: larger;
+    border: var(--ButtonBorder);
+    padding: 10px;
+    background-color: var(--Button);
 }
