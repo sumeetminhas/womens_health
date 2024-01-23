@@ -1,0 +1,35 @@
+.column {
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  color: rgb(114, 4, 4);
+  text-align: center;
+  padding: 60px;
+  font-size: 60px;
+  margin-top: 10%;
+}
+
+.blog-category {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: rgb(152, 76, 10);
+}
+
+.posts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.post-container {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: black;
+  max-width: 30%;
+}
+
+.post-img {
+  width: 60%;
+}

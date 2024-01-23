@@ -15,13 +15,13 @@ import vagina from "./anatomy_pictures/vagina.png";
 
 const initialPosition = [
   {
-    id: "cervix",
-    src: cervix,
+    id: "ft_left",
+    src: ft_left,
     position: {x: 0, y: 0}
   },
   {
-    id: "ft_left",
-    src: ft_left,
+    id: "cervix",
+    src: cervix,
     position: {x: 0, y: 0}
   },
   {
@@ -35,20 +35,22 @@ const initialPosition = [
     position: {x: 0, y: 0}
   },
   {
-    id: "ovary_right",
-    src: ovary_right,
-    position: {x: 0, y: 0}
-  },
-  {
     id: "uterus",
     src: uterus,
     position: {x: 0, y: 0}
   },
   {
+    id: "ovary_right",
+    src: ovary_right,
+    position: {x: 0, y: 0}
+  },
+  {},
+  {
     id: "vagina",
     src: vagina,
     position: {x: 0, y: 0}
   },
+  {},
 ].map((item, i) => ({
   ...item,
   position: {
@@ -56,58 +58,6 @@ const initialPosition = [
     y: 100 * Math.floor(i / 2)
   }
 }))
-
-// export const DragDrop = () => {
-
-//   const [isDropped, setIsDropped] = useState(false);
-//   const [draggableItems, setDraggableItems] = useState(initialPosition);
-
-
-//   function handleDragEnd(event) {
-//     // console.log("event", event)
-//     const item = draggableItems.find((item) => item.id === event.active.id)
-//     const newState = {
-//       ...item,
-//       position: {x: item.position.x + event.delta.x, y: item.position.y + event.delta.y}
-//     }
-//     setDraggableItems([
-//       ...draggableItems.filter((item) => item.id !== event.active.id),
-//       newState,
-//     ])
-//   }
-
-//   const gridLayout = Array.from({ length: 3}, (_, row) =>
-//     Array.from({ length: 3 }, (_, col) => row * 3 + col)
-//   );
-  
-//     return (
-//       <DndContext onDragEnd={handleDragEnd}>
-
-//         <div className="dragDropRow">
-//           <div className="pieces">
-//             {draggableItems.map(item => (
-//               <Draggable key={item.id} id={item.id}  position={item.position}>
-//                 <img src={item.src} alt={item.id} />
-//               </Draggable>
-//             ))}
-//         </div>
-
-//         <div className="grid-container">
-//           {gridLayout.map((row, rowIndex) => (
-//             <div key={rowIndex} className="grid-row">
-//               {row.map((colIndex) => (
-//                 <Droppable key={colIndex} id={draggableItems[rowIndex * 3 + colIndex]?.id}>
-//                   {isDropped ? null : <div className="custom-box"></div>}
-//                 </Droppable>
-//               ))}
-//             </div> 
-//           ))}
-//           </div>
-//         </div>
-
-//       </DndContext>
-//     )} 
-
 
 export const DragDrop = () => {
   
@@ -157,17 +107,11 @@ export const DragDrop = () => {
       position: newPosition,
     };
 
-    // setDraggableItems([
-    //   ...draggableItems.filter((item) => item.id !== event.active.id),
-    //   newState,
-    // ]);
     setDraggableItems(state => {
       return state.toSpliced(itemIndex, 1, newState)
     })
 
   }
-
-
 
   //array that represents the 3x3 grid structure
   const gridLayout = Array.from({ length: 3 }, (_, row) =>
@@ -175,12 +119,6 @@ export const DragDrop = () => {
     Array.from(Array(3).keys())
   );
   
-  // gridLayout.forEach((row, rowIndex) => {
-  //   row.forEach(colIndex => {
-  //     const item = draggableItems[(rowIndex * 3) + colIndex]
-  //     console.log("row index, col index, item", rowIndex, colIndex, item)
-  //   })
-  // })
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <div className="dragDropRow">
