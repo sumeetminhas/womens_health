@@ -35,6 +35,7 @@
     background-color: unset;
     flex-direction: column;
     align-items: center;
+    height: 420px;
 
 
     h1 {
