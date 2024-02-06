@@ -1,5 +1,5 @@
 .carousel {
-  width: 600px;
+  width: 900px;
   height: 450px;
   border: 4px solid black;
   position: relative;
@@ -20,7 +20,7 @@
 
     .square {
       width: 250px;
-      height: 380px;
+      height: 400px;
       background-color: purple;
     }
   }

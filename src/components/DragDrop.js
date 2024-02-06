@@ -1,4 +1,4 @@
-import { React, useState} from "react";
+import { React, useState, useRef, useEffect, forwardRef } from "react";
 import "./DragDrop.css";
 import { Draggable } from "./Draggable";
 import {DndContext} from '@dnd-kit/core';
@@ -12,6 +12,7 @@ import ovary_left from "./anatomy_pictures/ovary_left.png";
 import ovary_right from "./anatomy_pictures/ovary_right.png";
 import uterus from "./anatomy_pictures/uterus.png";
 import vagina from "./anatomy_pictures/vagina.png";
+
 
 const initialPosition = [
   {
@@ -44,13 +45,13 @@ const initialPosition = [
     src: ovary_right,
     position: {x: 0, y: 0}
   },
-  {},
+  // {},
   {
     id: "vagina",
     src: vagina,
     position: {x: 0, y: 0}
   },
-  {},
+  // {},
 ].map((item, i) => ({
   ...item,
   position: {
@@ -61,6 +62,9 @@ const initialPosition = [
 
 export const DragDrop = () => {
   
+  const dragRef = useRef()
+  const dropRef = useRef()
+
   //represents whether an item is dropped
   const [isDropped, setIsDropped] = useState(false);
 
@@ -72,7 +76,7 @@ export const DragDrop = () => {
 
   //triggered when a drag operation ends
   function handleDragEnd(event) {
-    console.log("over?", event.over)
+    // console.log("over?", event.over)
     let itemIndex
     //finds the item being dragged
     const item = draggableItems.find((item, i) => {
@@ -87,6 +91,7 @@ export const DragDrop = () => {
       x: item.position.x + event.delta.x,
       y: item.position.y + event.delta.y,
     };
+    // console.log("newPosition", newPosition)
 
     // Check if the dropped position is correct by calculating grid index
     // where item is dropped (droppedIndex) and checks if the item 
@@ -119,28 +124,64 @@ export const DragDrop = () => {
     Array.from(Array(3).keys())
   );
   
+  useEffect (() => {
+    // const rootEl = document.querySelector('.droppable-container#ft_left')
+    // const target = document.querySelector('.thing.ft_left')
+    // console.log("rootEl and Target", rootEl, target)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        console.log("entries", entries)
+      })
+    }, {
+      root: dropRef.current,
+      threshold: 0.1
+    })
+    observer.observe(dragRef.current)
+    return () => {
+      observer.disconnect()
+    }
+}, [])
+
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <div className="dragDropRow">
         <div className="pieces">
-          {draggableItems.map((item) => (
-            <Draggable key={item.id} id={item.id} position={item.position}>
+          <Draggable key={`drg${draggableItems[0].id}`} id={draggableItems[0].id} position={draggableItems[0].position}>
+            <img
+              ref={dragRef}
+              src={draggableItems[0].src}
+              alt={draggableItems[0].id}
+            />
+          </Draggable>
+          {/* {draggableItems.map((item) => (
+            <Draggable key={`drg${item.id}`} id={item.id} position={item.position}>
               <img src={item.src} alt={item.id} />
-            </Draggable>
-          ))}
+            </Draggable> */}
+          {/* ))} */}
+        </div>
+        <div style={{ position: 'relative', width: '200px', height: '200px', backgroundColor: 'blue' }} ref={dropRef}>
+          drop here
         </div>
 
         <div className="grid-container">
-          {gridLayout.map((row, rowIndex) => (
-            <div key={rowIndex} className="grid-row">
-              {row.map((colIndex) => (
-                <Droppable key={colIndex} id={draggableItems[(rowIndex * 3) + colIndex]?.id}>
+          {/* {gridLayout.map((row, rowIndex) => ( */}
+            <div className="grid-row">
+              <Droppable id={draggableItems[0]?.id}>
+                <div
+                  // ref={dropRef}
+                  className="custom-box"
+                >{draggableItems[0]?.id}</div>
+                {/* {correctPlacements[0] ? (
+                  <div className="correct-box">{draggableItems[0]?.id}</div>) : (<div className="custom-box">{draggableItems[0]?.id}</div> )} */}
+              </Droppable>
+              {/* {row.map((colIndex) => (
+                <Droppable key={`col${colIndex}`} id={draggableItems[(rowIndex * 3) + colIndex]?.id}>
                   {correctPlacements[rowIndex * 3 + colIndex] ? (
                     <div className="correct-box">{draggableItems[(rowIndex * 3) + colIndex]?.id}</div>) : (<div className="custom-box">{draggableItems[(rowIndex * 3) + colIndex]?.id}</div> )}
                 </Droppable>
-              ))}
+              ))} */}
             </div>
-          ))}
+          {/* ))} */}
         </div>
       </div>
     </DndContext>
