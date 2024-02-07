@@ -1,8 +1,8 @@
 :root {
---Button:  rgb(184, 76, 43);
---ButtonText: rgb(230, 113, 77);
---ButtonBorder: 2px solid rgb(178, 46, 46);
---HeadingText: rgb(178, 60, 60);
+--Button: linear-gradient(#d77184, white);
+--ButtonText: rgb(255, 255, 255);
+--ButtonBorder: 2px solid rgb(255, 255, 255);
+--HeadingText: rgb(114, 75, 67);
 }
 
 body {
@@ -13,7 +13,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  background-color: rgb(249, 172, 157);
+  background-color: #d77184;
 }
 
 #root {

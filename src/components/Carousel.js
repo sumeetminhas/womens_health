@@ -22,19 +22,24 @@ export const Carousel = ({children}) => {
   }
 
   return (
-    <div className="carousel">
+    <div className="outer-carousel">
       <div className="carousel__left" onClick={() => setPosition(position - 1)}></div>
+
+      <div className="carousel">
       
-      <div className="carousel__inner" ref={content} style={style}>
-        {children}
+        <div className="carousel__inner" ref={content} style={style}>
+          {children}
         {/* <BlogPost /> */}
         {/* <div className="square" style={{backgroundColor:'green'}}></div>
         <div className="square"></div>
         <div className="square" style={{backgroundColor: 'blue'}}></div> */}
-      </div>
+        </div>
       
+
+      </div>
       <div className="carousel__right" onClick={() => setPosition(position + 1)}></div>
 
     </div>
+
   )
 }
