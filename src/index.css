@@ -13,7 +13,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  background-color: #d77184;
+  background-color: rgb(176, 191, 176);
 }
 
 #root {

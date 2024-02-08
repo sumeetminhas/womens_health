@@ -1,25 +1,27 @@
 import React from "react";
 import "./BlogPost.css";
 import { Carousel } from "./Carousel";
-import photo from "./photos/stock_photo.jpg";
+import link1 from "./photos/link1.jpg";
+import link2 from "./photos/link2.jpg";
+import link3 from "./photos/link3.jpg";
 
 const DATA = [{
-  img: photo,
-  title: "health stuff", 
+  img: link1,
+  title: "10 tips for pelvic health", 
   snippet: "this is a blog about health",
-  description: "its written by Lydia something",
+  description: "Carla Walker",
   link: "https://codepen.io/AdamMorsi/pen/VNWvww"
 }, {
-  img: photo,
-  title: "more health stuff", 
+  img: link2,
+  title: "ways to decrease stress", 
   snippet: "this is a blog about more health",
-  description: "its written by Lydia something",
+  description: "John Hamm",
   link: "https://codepen.io/AdamMorsi/pen/VNWvww"
 }, {
-  img: photo,
-  title: "even more health stuff", 
+  img: link3,
+  title: "foods for healthy gut", 
   snippet: "even more health",
-  description: "its written by Lydia something",
+  description: "Lydia Wilson",
   link: "https://codepen.io/AdamMorsi/pen/VNWvww"
 }]
 
