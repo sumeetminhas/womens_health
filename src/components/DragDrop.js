@@ -1,189 +1,113 @@
-import { React, useState, useRef, useEffect, forwardRef } from "react";
+
+import React, { useState } from "react";
 import "./DragDrop.css";
-import { Draggable } from "./Draggable";
-import {DndContext} from '@dnd-kit/core';
-import {Droppable} from './Droppable';
-import cervix from "./anatomy_pictures/cervix.png";
-import ft_left from "./anatomy_pictures/fallopian_tube_left.png";
-
-
-import ft_right from "./anatomy_pictures/fallopian_tube_right.png";
+import { PuzzleWon } from "./PuzzleWon";
+import ft_left from "./anatomy_pictures/fallopian_tube_left.png"
+import ft_right from "./anatomy_pictures/fallopian_tube_right.png"
+import cervix from "./anatomy_pictures/cervix.png"
 import ovary_left from "./anatomy_pictures/ovary_left.png";
 import ovary_right from "./anatomy_pictures/ovary_right.png";
 import uterus from "./anatomy_pictures/uterus.png";
 import vagina from "./anatomy_pictures/vagina.png";
 
+function GridCell({onClick, children, correct}) {
+  return <div className={`grid-cell${(correct && ' correct') || ''}`} onClick={onClick}>{children}</div>
+}
 
-const initialPosition = [
+const photos = [
   {
-    id: "ft_left",
+    id: 0,
     src: ft_left,
-    position: {x: 0, y: 0}
+    correct: false
   },
   {
-    id: "cervix",
+    id: 4,
     src: cervix,
-    position: {x: 0, y: 0}
+    correct: false
   },
   {
-    id: "ft_right",
+    id: 2,
     src: ft_right,
-    position: {x: 0, y: 0}
+    correct: false
   },
   {
-    id: "ovary_left",
+    id: 3,
     src: ovary_left,
-    position: {x: 0, y: 0}
+    correct: false
   },
   {
-    id: "uterus",
+    id: 1,
     src: uterus,
-    position: {x: 0, y: 0}
+    correct: false
   },
   {
-    id: "ovary_right",
+    id: 5,
     src: ovary_right,
-    position: {x: 0, y: 0}
+    correct: false
   },
-  // {},
   {
-    id: "vagina",
+    id: 7,
     src: vagina,
-    position: {x: 0, y: 0}
-  },
-  // {},
-].map((item, i) => ({
-  ...item,
-  position: {
-    x: i % 2 === 0 ? 0 : 200,
-    y: 100 * Math.floor(i / 2)
+    correct: false
   }
-}))
+]
 
 export const DragDrop = () => {
-  
-  const dragRef = useRef()
-  const dropRef = useRef()
+  const [ grid, setGrid ] = useState(Array(9).fill(null));
+  const [ selectedImage, setSelectedImage ] = useState(null);
+  const [ previouslySelected, setPreviouslySelected ] = useState([])
+  const [ win, setWin ] = useState(false)
 
-  //represents whether an item is dropped
-  const [isDropped, setIsDropped] = useState(false);
+  const handleImageClick = () => {
+    const remainingPhotos = photos.filter(photo => !previouslySelected.includes(photo))
 
-  //keeps track of the draggable items with their positions
-  const [draggableItems, setDraggableItems] = useState(initialPosition);
+    if (remainingPhotos.length > 0) {
+      const newSelectedImage = remainingPhotos[(Math.floor(Math.random() * remainingPhotos.length))]
+      setSelectedImage(newSelectedImage)
+      setPreviouslySelected(prevHistory => [...prevHistory, newSelectedImage])
+    } else {
+      setWin(true)
+        console.log("all photos have been selected")
+    }
 
-  //tracks whether each grid position had a correct item placed
-  const [correctPlacements, setCorrectPlacements] = useState(Array(9).fill(false))
+    // setSelectedImage(photos[(Math.floor(Math.random() * photos.length))]);
+  };
 
-  //triggered when a drag operation ends
-  function handleDragEnd(event) {
-    // console.log("over?", event.over)
-    let itemIndex
-    //finds the item being dragged
-    const item = draggableItems.find((item, i) => {
-      if (item.id === event.active.id) {
-        itemIndex = i
-        return true
+  // console.log("selected images", selectedImage)
+  const handleGridCellClick = (index) => {
+    if (selectedImage !== null) {
+      const newGrid = [...grid]
+      newGrid[index] = selectedImage;
+      if (selectedImage.id === index) {
+        newGrid[index].correct = true
+        console.log("you put it in the right spot")
+      } else {
+        console.log("wrong spot")
       }
-      return false
-    });
-    //calculates its new position based on the drag movement
-    const newPosition = {
-      x: item.position.x + event.delta.x,
-      y: item.position.y + event.delta.y,
-    };
-    // console.log("newPosition", newPosition)
-
-    // Check if the dropped position is correct by calculating grid index
-    // where item is dropped (droppedIndex) and checks if the item 
-    //matches the expected item in the grid from initialPosition
-    const droppedIndex = Math.floor(newPosition.y / 100) * 3 + Math.floor(newPosition.x / 200);
-    const isCorrect = item.id === initialPosition[droppedIndex]?.id;
-
-    //if correct, it updates the correctPlacements state to mark 
-    //that grid position as correct
-    if (isCorrect) {
-      const updatedPlacements = [...correctPlacements];
-      updatedPlacements[droppedIndex] = true;
-      setCorrectPlacements(updatedPlacements);
+      setGrid(newGrid);
+      setSelectedImage(null);
     }
+  };
 
-    const newState = {
-      ...item,
-      position: newPosition,
-    };
-
-    setDraggableItems(state => {
-      return state.toSpliced(itemIndex, 1, newState)
-    })
-
-  }
-
-  //array that represents the 3x3 grid structure
-  const gridLayout = Array.from({ length: 3 }, (_, row) =>
-    // Array.from({ length: 3 }, (_, col) => row * 3 + col)
-    Array.from(Array(3).keys())
-  );
-  
-  useEffect (() => {
-    // const rootEl = document.querySelector('.droppable-container#ft_left')
-    // const target = document.querySelector('.thing.ft_left')
-    // console.log("rootEl and Target", rootEl, target)
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        console.log("entries", entries)
-      })
-    }, {
-      root: dropRef.current,
-      threshold: 0.1
-    })
-    observer.observe(dragRef.current)
-    return () => {
-      observer.disconnect()
-    }
-}, [])
 
   return (
-    <DndContext onDragEnd={handleDragEnd}>
-      <div className="dragDropRow">
-        <div className="pieces">
-          <Draggable key={`drg${draggableItems[0].id}`} id={draggableItems[0].id} position={draggableItems[0].position}>
-            <img
-              ref={dragRef}
-              src={draggableItems[0].src}
-              alt={draggableItems[0].id}
-            />
-          </Draggable>
-          {/* {draggableItems.map((item) => (
-            <Draggable key={`drg${item.id}`} id={item.id} position={item.position}>
-              <img src={item.src} alt={item.id} />
-            </Draggable> */}
-          {/* ))} */}
-        </div>
-        <div style={{ position: 'relative', width: '200px', height: '200px', backgroundColor: 'blue' }} ref={dropRef}>
-          drop here
-        </div>
-
-        <div className="grid-container">
-          {/* {gridLayout.map((row, rowIndex) => ( */}
-            <div className="grid-row">
-              <Droppable id={draggableItems[0]?.id}>
-                <div
-                  // ref={dropRef}
-                  className="custom-box"
-                >{draggableItems[0]?.id}</div>
-                {/* {correctPlacements[0] ? (
-                  <div className="correct-box">{draggableItems[0]?.id}</div>) : (<div className="custom-box">{draggableItems[0]?.id}</div> )} */}
-              </Droppable>
-              {/* {row.map((colIndex) => (
-                <Droppable key={`col${colIndex}`} id={draggableItems[(rowIndex * 3) + colIndex]?.id}>
-                  {correctPlacements[rowIndex * 3 + colIndex] ? (
-                    <div className="correct-box">{draggableItems[(rowIndex * 3) + colIndex]?.id}</div>) : (<div className="custom-box">{draggableItems[(rowIndex * 3) + colIndex]?.id}</div> )}
-                </Droppable>
-              ))} */}
-            </div>
-          {/* ))} */}
-        </div>
+    <div className="grid">
+      <h1>Puzzle</h1>
+      <div className="grid-image">
+        {grid.map((item, index) => (
+          <GridCell key={index} correct={item?.correct} onClick={() => handleGridCellClick(index)}>
+            {item && <img src={item.src} alt={`Image ${index}`}/>}
+          </GridCell>
+        ))}
       </div>
-    </DndContext>
-  );
-};
+      <div className="img-container">
+        {selectedImage ? (
+        <img src={selectedImage.src} alt="Selected" onClick={handleImageClick} />
+        ) : (
+          <button onClick={handleImageClick}>Select image</button>
+        )}
+      </div>
+      {win && <PuzzleWon />}
+    </div>
+  )
+}

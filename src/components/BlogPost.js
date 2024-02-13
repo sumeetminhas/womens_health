@@ -12,13 +12,13 @@ const DATA = [{
   description: "Carla Walker",
   link: "https://codepen.io/AdamMorsi/pen/VNWvww"
 }, {
-  img: link2,
+  img: link3,
   title: "ways to decrease stress", 
   snippet: "this is a blog about more health",
   description: "John Hamm",
   link: "https://codepen.io/AdamMorsi/pen/VNWvww"
 }, {
-  img: link3,
+  img: link2,
   title: "foods for healthy gut", 
   snippet: "even more health",
   description: "Lydia Wilson",
