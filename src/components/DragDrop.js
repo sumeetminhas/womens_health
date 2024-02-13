@@ -55,11 +55,14 @@ const photos = [
 export const DragDrop = () => {
   const [ grid, setGrid ] = useState(Array(9).fill(null));
   const [ selectedImage, setSelectedImage ] = useState(null);
-  const [ previouslySelected, setPreviouslySelected ] = useState([])
-  const [ win, setWin ] = useState(false)
-  const [ wrongMove, setWrongMove ] = useState(false)
+  const [ previouslySelected, setPreviouslySelected ] = useState([]);
+  const [ win, setWin ] = useState(false);
+  const [ wrongMove, setWrongMove ] = useState(false);
 
   const handleImageClick = () => {
+    if (selectedImage || wrongMove) {
+      return
+    }
     const remainingPhotos = photos.filter(photo => !previouslySelected.includes(photo))
 
     if (remainingPhotos.length > 0) {
@@ -70,27 +73,7 @@ export const DragDrop = () => {
       setWin(true)
         console.log("all photos have been selected")
     }
-
-    // setSelectedImage(photos[(Math.floor(Math.random() * photos.length))]);
   };
-
-  // console.log("selected images", selectedImage)
-  // const handleGridCellClick = (index) => {
-  //   if (selectedImage !== null || wrongMove) {
-  //     const newGrid = [...grid]
-  //     newGrid[index] = selectedImage;
-  //     if (selectedImage.id === index) {
-  //       newGrid[index].correct = true
-  //       setWrongMove(false)
-  //       console.log("you put it in the right spot")
-  //     } else {
-  //       setWrongMove(true)
-  //       console.log("wrong spot")
-  //     }
-  //     setGrid(newGrid);
-  //     setSelectedImage(null);
-  //   }
-  // };
 
     const handleGridCellClick = (index) => {
     if (selectedImage !== null || wrongMove) {
@@ -115,6 +98,7 @@ export const DragDrop = () => {
   return (
     <div className="grid">
       <h1>Puzzle</h1>
+      {wrongMove && <div className="err-msg">wrong move. select a new square </div>}
       <div className="grid-image">
         {grid.map((item, index) => (
           <GridCell key={index} correct={item?.correct} onClick={() => handleGridCellClick(index)}>

@@ -114,3 +114,8 @@
   cursor: pointer;
   max-width: 10%;
 }
+
+.err-msg {
+  border: 1px solid black;
+  
+}
