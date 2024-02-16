@@ -2,7 +2,12 @@
   width:  500px;
   height: 500px;
   border: solid 2px red;
-
+  position: absolute;
+  z-index: 100;
+  grid-column: 1 / span 3;
+  grid-row: 1 / span 3;
+  justify-self: center;
+  align-self: center;
 }
 
 .WinPicture {
@@ -22,5 +27,5 @@
 
 .WinMsg {
 color: rgb(80, 101, 82);
-
 }
+

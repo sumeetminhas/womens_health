@@ -11,7 +11,9 @@ import uterus from "./anatomy_pictures/uterus.png";
 import vagina from "./anatomy_pictures/vagina.png";
 
 function GridCell({onClick, children, correct}) {
-  return <div className={`grid-cell${(correct && ' correct') || ''}`} onClick={onClick}>{children}</div>
+  return <div className={`grid-cell${(correct && ' correct') || ''}`} onClick={onClick}>
+      {children}
+    </div>
 }
 
 const photos = [
@@ -58,6 +60,7 @@ export const DragDrop = () => {
   const [ previouslySelected, setPreviouslySelected ] = useState([]);
   const [ win, setWin ] = useState(false);
   const [ wrongMove, setWrongMove ] = useState(false);
+  const [ wrongIndex, setWrongIndex ] = useState(false);
 
   const handleImageClick = () => {
     if (selectedImage || wrongMove) {
@@ -85,6 +88,7 @@ export const DragDrop = () => {
         console.log("right spot")
       } else if (selectedImage) {
         setWrongMove(true)
+        setWrongIndex(index)
         console.log('wrong spot')
       }
       if (selectedImage && selectedImage.id === index) {
@@ -94,26 +98,30 @@ export const DragDrop = () => {
     }
   };
 
-
-  return (
+    return (
     <div className="grid">
       <h1>Puzzle</h1>
-      {wrongMove && <div className="err-msg">wrong move. select a new square </div>}
-      <div className="grid-image">
+      {/* <div className="wrapper"> */}
+      <div className={`grid-image ${win? "grid-image--won" : ""}`}>
+        {win && <PuzzleWon />}
         {grid.map((item, index) => (
           <GridCell key={index} correct={item?.correct} onClick={() => handleGridCellClick(index)}>
-            {item && <img src={item.src} alt={`Image ${index}`}/>}
+            {item &&  item.correct ? (
+            <img src={item.src} alt={`Image ${index}`}/>
+            ) : (
+              wrongMove && wrongIndex === index && <div className="err-msg"> you messed up</div>
+            )}
           </GridCell>
         ))}
       </div>
+      {/* </div> */}
       <div className="img-container">
         {selectedImage ? (
         <img src={selectedImage.src} alt="Selected" onClick={handleImageClick} />
         ) : (
-          <button onClick={handleImageClick}>Select image</button>
+          <button className="select-btn" onClick={handleImageClick}>select piece</button>
         )}
       </div>
-      {win && <PuzzleWon />}
     </div>
   )
 }

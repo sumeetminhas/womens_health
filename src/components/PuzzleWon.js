@@ -8,5 +8,7 @@ export const PuzzleWon = () => {
       <div className='WinMsg'> Congratulations! You completed the puzzle </div>
       <img className="WinPicture" src={finalPicture} alt=""></img>
     </div>
+
+
   )
 }
