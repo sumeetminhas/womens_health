@@ -106,7 +106,7 @@ export const DragDrop = () => {
         {win && <PuzzleWon />}
         {grid.map((item, index) => (
           <GridCell key={index} correct={item?.correct} onClick={() => handleGridCellClick(index)}>
-            {item &&  item.correct ? (
+            {item && item.correct ? (
             <img src={item.src} alt={`Image ${index}`}/>
             ) : (
               wrongMove && wrongIndex === index && <div className="err-msg"> you messed up</div>
