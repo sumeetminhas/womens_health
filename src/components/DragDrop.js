@@ -12,6 +12,9 @@ import vagina from "./anatomy_pictures/vagina.png";
 
 function GridCell({onClick, children, correct}) {
   return <div className={`grid-cell${(correct && ' correct') || ''}`} onClick={onClick}>
+    <div className="t"></div>
+    <div className="b"></div>
+    <div className="r"></div>
       {children}
     </div>
 }
@@ -20,7 +23,7 @@ const photos = [
   {
     id: 0,
     src: ft_left,
-    correct: false
+    correct: false,
   },
   {
     id: 4,
@@ -100,7 +103,7 @@ export const DragDrop = () => {
 
     return (
     <div className="grid">
-      <h1>Puzzle</h1>
+      <h1 className="puzzle-name">Build Your Own Vulva</h1>
       {/* <div className="wrapper"> */}
       <div className={`grid-image ${win? "grid-image--won" : ""}`}>
         {win && <PuzzleWon />}
@@ -109,7 +112,7 @@ export const DragDrop = () => {
             {item && item.correct ? (
             <img src={item.src} alt={`Image ${index}`}/>
             ) : (
-              wrongMove && wrongIndex === index && <div className="err-msg"> you messed up</div>
+              wrongMove && wrongIndex === index && <div className="err-msg"> wrong spot bud</div>
             )}
           </GridCell>
         ))}
