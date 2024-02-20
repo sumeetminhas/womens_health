@@ -1,7 +1,7 @@
 .WinPopup {
   width:  500px;
   height: 500px;
-  border: solid 2px red;
+  /* border: solid 2px red; */
   border-radius: 8px;
   position: absolute;
   z-index: 100;
@@ -24,9 +24,14 @@
 @keyframes fadeIn {
   0% { opacity: 0; }
   100% { opacity: 1; }
+  from {background-color: red;}
+  to {background-color: pink;}
 }
 
 .WinMsg {
 color: rgb(80, 101, 82);
 }
 
+.WinPicture {
+
+}
