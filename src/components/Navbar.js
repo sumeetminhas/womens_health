@@ -11,10 +11,10 @@ console.log(location)
       <div className={`navbar ${location.pathname === "/" ? "homepage" : ""}`}>
         <div>
             <h1 >vagtastic learning</h1>
-            <h2> let's learn together </h2>
+            {location.pathname === "/" && <h2> let's learn together </h2>}
         </div>
 
-        <div className="flower">
+        {location.pathname === "/" && <div className="flower">
             <div className="ball">
                 <div className="petal1 petal"></div>
                 <div className="petal2 petal"></div>
@@ -23,7 +23,7 @@ console.log(location)
                 <div className="petal5 petal"></div>
                 <div className="petal6 petal"></div>
             </div>
-        </div>
+        </div>}
 
           <div className="links">
               <Link className="puzzle-board" to="/puzzle">puzzle</Link>
