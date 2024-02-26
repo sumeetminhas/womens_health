@@ -9,6 +9,5 @@ export const PuzzleWon = () => {
       <img className="WinPicture" src={finalPicture} alt=""></img>
     </div>
 
-
   )
 }

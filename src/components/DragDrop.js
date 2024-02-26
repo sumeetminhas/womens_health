@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "./DragDrop.css";
 import { PuzzleWon } from "./PuzzleWon";
+import { PlayAgainButton } from "./PlayAgain";
 import ft_left from "./anatomy_pictures/fallopian_tube_left.png"
 import ft_right from "./anatomy_pictures/fallopian_tube_right.png"
 import cervix from "./anatomy_pictures/cervix.png"
@@ -64,6 +65,7 @@ export const DragDrop = () => {
   const [ win, setWin ] = useState(false);
   const [ wrongMove, setWrongMove ] = useState(false);
   const [ wrongIndex, setWrongIndex ] = useState(false);
+  const [gameOver, setGameOver ] = useState(false);
 
   const handleImageClick = () => {
     if (selectedImage || wrongMove) {
@@ -101,12 +103,19 @@ export const DragDrop = () => {
     }
   };
 
+  const resetPuzzle = () => {
+    setWin(false)
+    setGrid((Array(9).fill(null)))
+  }
+
     return (
     <div className="grid">
+
       <h1 className="puzzle-name">Build Your Own Vulva</h1>
-      {/* <div className="wrapper"> */}
+      <PlayAgainButton resetPuzzle={resetPuzzle} />
+
       <div className={`grid-image ${win? "grid-image--won" : ""}`}>
-        {win && <PuzzleWon />}
+        {win && <PuzzleWon />  }
         {grid.map((item, index) => (
           <GridCell key={index} correct={item?.correct} onClick={() => handleGridCellClick(index)}>
             {item && item.correct ? (
@@ -117,7 +126,7 @@ export const DragDrop = () => {
           </GridCell>
         ))}
       </div>
-      {/* </div> */}
+
       <div className="img-container">
         {selectedImage ? (
         <img src={selectedImage.src} alt="Selected" onClick={handleImageClick} />
@@ -125,6 +134,7 @@ export const DragDrop = () => {
           <button className="select-btn" onClick={handleImageClick}>select piece</button>
         )}
       </div>
+
     </div>
   )
 }
