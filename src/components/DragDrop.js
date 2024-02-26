@@ -79,6 +79,7 @@ export const DragDrop = () => {
       setPreviouslySelected(prevHistory => [...prevHistory, newSelectedImage])
     } else {
       setWin(true)
+      setGameOver(true)
         console.log("all photos have been selected")
     }
   };
@@ -105,20 +106,21 @@ export const DragDrop = () => {
 
   const resetPuzzle = () => {
     setWin(false)
+    setGameOver(false)
     setGrid((Array(9).fill(null)))
+    setPreviouslySelected([])
   }
 
     return (
     <div className="grid">
 
       <h1 className="puzzle-name">Build Your Own Vulva</h1>
-      <PlayAgainButton resetPuzzle={resetPuzzle} />
 
       <div className={`grid-image ${win? "grid-image--won" : ""}`}>
         {win && <PuzzleWon />  }
         {grid.map((item, index) => (
           <GridCell key={index} correct={item?.correct} onClick={() => handleGridCellClick(index)}>
-            {item && item.correct ? (
+            {item && item.correct  ? (
             <img src={item.src} alt={`Image ${index}`}/>
             ) : (
               wrongMove && wrongIndex === index && <div className="err-msg"> wrong spot bud</div>
@@ -131,8 +133,10 @@ export const DragDrop = () => {
         {selectedImage ? (
         <img src={selectedImage.src} alt="Selected" onClick={handleImageClick} />
         ) : (
-          <button className="select-btn" onClick={handleImageClick}>select piece</button>
+          <button className="select-btn" onClick={handleImageClick}>New Piece</button>
         )}
+
+        <PlayAgainButton onClick={gameOver ? resetPuzzle : handleGridCellClick} resetPuzzle={resetPuzzle} />
       </div>
 
     </div>

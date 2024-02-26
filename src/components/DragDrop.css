@@ -102,6 +102,7 @@
   width: 100%;
   max-height: 60vh;
   position: relative;
+  margin-top: 15px;
   
   *:not(.WinPopup, .WinPopup *) {
     transition: 1s opacity;
@@ -223,6 +224,7 @@ div.err-msg {
   background-color: rgb(80, 101, 82);
   border-radius: 25px;
   box-shadow: 0 9px #999;
+  margin: 5px;
 }
 
 .select-btn:hover {
@@ -238,4 +240,5 @@ div.err-msg {
 .puzzle-name {
   color: rgb(55, 22, 55);
   font-size: 40px;
+  margin: 10px;
 }

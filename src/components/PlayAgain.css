@@ -1,0 +1,8 @@
+.ReplayButton {
+  width: 8em;
+  height: 4em;
+  background-color: rgb(80, 101, 82);
+  border-radius: 25px;
+  box-shadow: 0 9px #999;
+  margin: 5px;
+}

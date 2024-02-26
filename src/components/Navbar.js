@@ -9,7 +9,22 @@ console.log(location)
 
   return (
       <div className={`navbar ${location.pathname === "/" ? "homepage" : ""}`}>
-          <h1>vagtastic learning</h1>
+        <div>
+            <h1 >vagtastic learning</h1>
+            <h2> let's learn together </h2>
+        </div>
+
+        <div className="flower">
+            <div className="ball">
+                <div className="petal1 petal"></div>
+                <div className="petal2 petal"></div>
+                <div className="petal3 petal"></div>
+                <div className="petal4 petal"></div>
+                <div className="petal5 petal"></div>
+                <div className="petal6 petal"></div>
+            </div>
+        </div>
+
           <div className="links">
               <Link className="puzzle-board" to="/puzzle">puzzle</Link>
               <Link className="blog" to="/blog">blog</Link>

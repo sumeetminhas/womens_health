@@ -72,7 +72,12 @@ const Post = ({data}) => {
   const { image, title, snippet, description, link} = data;
   const blob = new Blob(image.data, {type: "image/jpeg"})
 
+
+
   console.log("blob", URL.createObjectURL(blob))
+
+  // console.log(btoa(blob))
+
   return (
       <div className="post-container">
         <div className="post-img-container">

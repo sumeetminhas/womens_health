@@ -48,17 +48,93 @@
     h1 {
       padding-top: 100px;
       margin-left: unset;
+      padding-right: 800px;
+      font-size: 70px;
+    }
+
+    h2 {
+      color: white;
+      padding-right: 800px;
     }
 
     .links {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      width: 400px;
+      width: 200px;
+      padding-right: 800px;
+    }
+
+    .blog {
+      padding-top: 5%;
+    }
+    .puzzle-board {
+      padding-top: 5%;
     }
   }
 
 }
+
+.flower {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  min-height: 100px;
+
+}
+.homepage .flower {
+  margin-right: -40%;
+}
+
+.ball {
+  position: relative;
+  height: 125px;
+  width: 125px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid black
+}
+
+/* .petals {
+  position: relative;
+  width: 50px;
+  height: 50px;;
+} */
+
+.petal {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 80% 0 55% 50% / 55% 0 80% 50% ;
+  background-color: rgb(255, 255, 255);
+  transform-origin: 50% 50%;
+  border: 1px black solid;
+}
+
+.petal1{
+  transform: scale(1) translate(20%, -110%) rotate(-45deg);
+}
+
+.petal2{
+  transform: scale(1) translate(-90%, -60%) rotate(-100deg);
+}
+
+.petal3 {
+  transform: scale(1) translate(-100%, 60%) rotate(200deg);
+}
+
+.petal4 {
+  transform: scale(1) translate(120%, 60%) rotate(425deg);
+}
+
+.petal5 {
+  transform: scale(1) translate(120%, -50%) rotate(20deg);
+}
+.petal6 {
+  transform: scale(1) translate(10%, 130%) rotate(-225deg) ;
+}
+
+
 
 
 
