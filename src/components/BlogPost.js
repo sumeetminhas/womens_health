@@ -69,24 +69,23 @@ export const BlogPost = () => {
 
 const Post = ({data}) => {
 
-  const { image, title, snippet, description, link} = data;
-  const blob = new Blob(image.data, {type: "image/jpeg"})
+  const { image, article_title, author, description, link} = data;
+  // const blob = new Blob(image.data, {type: "image/jpeg"})
 
 
-
-  console.log("blob", URL.createObjectURL(blob))
+  console.log("data", data)
 
   // console.log(btoa(blob))
 
   return (
       <div className="post-container">
         <div className="post-img-container">
-          <img className="post-img" src={image} alt="post"/>
+          <img className="post-img" src={`photos/${image}`} alt="post"/>
           <a href={link} target="_blank" className="read-more-text" rel="noreferrer" >read more</a>
-          </div>
-          <h3>{title}</h3>
-          <h4>{snippet}</h4>
-          <div>{description}</div>
-      </div>
+        </div>
+        <h3>{article_title}</h3>
+        <h4>{author}</h4>
+        <div>{description}</div>
+    </div>
   )
 }

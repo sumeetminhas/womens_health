@@ -100,21 +100,21 @@
 
 .ball {
   position: relative;
-  height: 125px;
-  width: 125px;
+  height: 140px;
+  width: 140px;
   border-radius: 50%;
-  background-color: white;
-  border: 1px solid black
+  background-color: rgb(225, 206, 182);
+  border: 2px solid white;
 }
 
 .petal {
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 115px;
+  height: 115px;
   border-radius: 80% 0 55% 50% / 55% 0 80% 50% ;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(225, 206, 182);
   transform-origin: 50% 50%;
-  border: 1px black solid;
+  border: 2px white solid;
 }
 
 .petal1{
