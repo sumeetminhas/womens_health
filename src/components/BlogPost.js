@@ -83,9 +83,11 @@ const Post = ({data}) => {
           <img className="post-img" src={`photos/${image}`} alt="post"/>
           <a href={link} target="_blank" className="read-more-text" rel="noreferrer" >read more</a>
         </div>
-        <h3>{article_title}</h3>
-        <h4>{author}</h4>
-        <div>{description}</div>
+        <div className="text-container">
+          <h3>{article_title}</h3>
+          <h4>{author}</h4>
+          <div>{description}</div>
+        </div>
     </div>
   )
 }

@@ -81,3 +81,9 @@ img.post-img {
 div.post-container h3 {
   margin: 0;
 }
+
+.text-container {
+  padding-top: 10px;;
+  background-color: hsl(30, 30%, 87%);
+  padding-bottom: 10px;
+}
