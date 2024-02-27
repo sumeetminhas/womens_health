@@ -4,7 +4,7 @@ import { Routes, Route} from "react-router-dom";
 import { Puzzle } from "./pages/puzzle";
 import { Blog } from "./pages/blog";
 import { Navbar } from "./components/Navbar";
-import TestPage from './pages/TestPage'
+import { FillBlank } from './pages/fillblank';
 
 export default function App() {
   return (
@@ -14,7 +14,7 @@ export default function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/puzzle" element={<Puzzle />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/test" element={<TestPage />} />
+        <Route path="/fillblank" element={<FillBlank />} />
       </Routes>
     </div>
 

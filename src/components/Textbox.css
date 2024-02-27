@@ -1,0 +1,68 @@
+.form-answer { 
+  padding: 10px 20px;
+  box-sizing: border-box;
+  background-color: pink;
+  border: 3px solid rgb(237, 163, 176);
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px -10px #d581ac;
+  }
+  50% {
+    box-shadow: 0 0 10px 10px #bd5389;
+  }
+  100% {
+    box-shadow: 0 0 10px -10px #d581ac;
+  }
+}
+
+.form-answer.correct {
+  background-color: yellow;
+  animation: glow 3s alternate;
+
+}
+
+.form-answer:nth-of-type(1) {
+  top: 26%;
+  left: 6%;
+}
+
+.form-answer:nth-of-type(2) {
+  top: 44.5%;
+  left: 6%;
+}
+
+.form-answer:nth-of-type(3) {
+  top: 66%;
+  left: 5%;
+}
+
+.form-answer:nth-of-type(4) {
+  top: 83%;
+  left: 69%;
+}
+
+.form-answer:nth-of-type(5) {
+  top: 54%;
+  left: 69%;
+}
+
+.form-answer:nth-of-type(6) {
+  top: 41%;
+  left: 68%;
+}
+
+.form-answer:nth-of-type(7) {
+  top: 29%;
+  left: 69%;
+}
+
+.form-answer:nth-of-type(8) {
+  top: 2%;
+  left: 68%;
+}
+
+
+
+

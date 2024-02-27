@@ -1,0 +1,17 @@
+.external-anatomy-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.external-anatomy-container {
+  position: relative;
+
+}
+
+.external-anatomy-container input {
+  position: absolute;
+  display: block;
+  /* top: 0; */
+}

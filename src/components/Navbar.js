@@ -28,6 +28,7 @@ console.log(location)
           <div className="links">
               <Link className="puzzle-board" to="/puzzle">puzzle</Link>
               <Link className="blog" to="/blog">blog</Link>
+              <Link className="fill-blank" to="/fillblank">label body parts</Link>
           </div>
       </div>
   )
