@@ -11,12 +11,20 @@ export const ExternalSystem = () => {
   // const debounceValidate = useRef()
   const [ answers, setAnswers ] = useState(new Array(8).fill(""))
   const [ rightAnswer, setRightAnswer ] = useState(new Array(8).fill(false))
-  
-  const validateAnswers = () => {
-    const newRightAnswers = ExternalAnswers.map((e, i) => {
-      return e === answers[i]
-    })
+  const [ animatedText, setAnimatedText ] = useState(null)
 
+  const validateAnswers = (index) => {
+    const newRightAnswers = [...rightAnswer]
+    newRightAnswers[index] = ExternalAnswers[index] === answers[index]
+
+    if (!newRightAnswers[index]) {
+      setAnimatedText(index)
+
+      setTimeout(() => {
+        setAnimatedText(null)
+      }, 1000)
+
+    }
     setRightAnswer(newRightAnswers)
   }
 
@@ -35,7 +43,7 @@ export const ExternalSystem = () => {
 
   return (
     <div>
-    <h1>External Anatomy</h1>
+      <h1>External Anatomy</h1>
 
       <div className="external-anatomy-container">
         <img src={external} alt="external"></img>
@@ -43,12 +51,13 @@ export const ExternalSystem = () => {
         {answers.map((a, i) => (
           <TextBox 
             key={i}
-            correct={rightAnswer[i]} 
+            correct={rightAnswer[i]}
+            className={i === animatedText ? 'animate' : ''}
             answer={a}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
-                validateAnswers()
-                console.log("entered enter", i)
+                validateAnswers(i)
+                console.log("entered wrong", i)
               }
             }} 
             setAnswer={(value) => {

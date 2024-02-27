@@ -5,6 +5,28 @@
   border: 3px solid rgb(237, 163, 176);
 }
 
+.form-answer.animate {
+  animation: shake 1s alternate;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
 @keyframes glow {
   0% {
     box-shadow: 0 0 10px -10px #d581ac;
@@ -22,6 +44,7 @@
   animation: glow 3s alternate;
 
 }
+
 
 .form-answer:nth-of-type(1) {
   top: 26%;
