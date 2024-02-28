@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Carousel.css";
-import { BlogPost } from "./BlogPost";
+// import { BlogPost } from "./BlogPost";
 
 
 export const Carousel = ({children}) => {

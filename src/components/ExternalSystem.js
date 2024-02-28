@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
 import external from "./anatomy_pictures/external.png"
 import { TextBox } from "./TextBox";
 import "./ExternalSystem.css";
