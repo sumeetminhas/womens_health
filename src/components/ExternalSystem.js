@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from "react";
-import external from "./anatomy_pictures/external.png"
+import external from "./anatomy_pictures/external.png";
 import { TextBox } from "./TextBox";
 import "./ExternalSystem.css";
 // import debounce from "lodash/debounce"
@@ -68,7 +68,6 @@ export const ExternalSystem = () => {
           />
         ))}
       </div>
-
     </div>
   )
 }
