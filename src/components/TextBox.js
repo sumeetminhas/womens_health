@@ -1,12 +1,12 @@
 import React from "react";
 import "./Textbox.css"
 
-export const TextBox = ({answer, setAnswer, onKeyDown, correct, className }) => {
+export const TextBox = ({answer, setAnswer, onKeyDown, correct, className, system }) => {
 
 
   return (
       <input 
-        className={`form-answer ${correct && "correct"} ${className}`}
+        className={`form-answer ${correct && "correct"} ${className} ${system}`}
         disabled={correct}
         type="text"
         onKeyDown={onKeyDown} 

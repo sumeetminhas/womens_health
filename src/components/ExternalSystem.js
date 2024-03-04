@@ -51,6 +51,7 @@ export const ExternalSystem = () => {
         {answers.map((a, i) => (
           <TextBox 
             key={i}
+            system="external"
             correct={rightAnswer[i]}
             className={i === animatedText ? 'animate' : ''}
             answer={a}

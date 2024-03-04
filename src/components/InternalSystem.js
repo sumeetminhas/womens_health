@@ -40,6 +40,7 @@ export const InternalSystem = () => {
         {answers.map((a, i) => (
           <TextBox
             key={i}
+            system="internal"
             correct={rightAnswer[i]}
             className={i === animatedText ? "animate" : ""}
             answer={a}

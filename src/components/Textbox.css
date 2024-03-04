@@ -46,10 +46,11 @@
 }
 
 
-.form-answer:nth-of-type(1) {
+.form-answer:nth-of-type(1).external {
   top: 26%;
   left: 6%;
 }
+
 
 .form-answer:nth-of-type(2) {
   top: 44.5%;
@@ -86,6 +87,34 @@
   left: 68%;
 }
 
+/* **** INTERNAL SYSTEM **** */
 
+.form-answer:nth-of-type(1).internal {
+  top: 8%;
+  left: 2%;
+}
 
+.form-answer:nth-of-type(2).internal {
+  top: 22%;
+  left: 2%;
+}
 
+.form-answer:nth-of-type(3).internal {
+  top: 39%;
+  left: 21%;
+}
+
+.form-answer:nth-of-type(4).internal {
+  top: 53%;
+  left: 18%;
+}
+
+.form-answer:nth-of-type(5).internal {
+  top: 69%;
+  left: 22%;
+}
+
+.form-answer:nth-of-type(6).internal {
+  top: 90%;
+  left: 20%;
+}
