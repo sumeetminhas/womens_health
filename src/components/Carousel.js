@@ -29,10 +29,6 @@ export const Carousel = ({children}) => {
       
         <div className="carousel__inner" ref={content} style={style}>
           {children}
-        {/* <BlogPost /> */}
-        {/* <div className="square" style={{backgroundColor:'green'}}></div>
-        <div className="square"></div>
-        <div className="square" style={{backgroundColor: 'blue'}}></div> */}
         </div>
       
 

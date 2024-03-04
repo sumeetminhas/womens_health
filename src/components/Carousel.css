@@ -6,7 +6,7 @@
   .carousel__left, .carousel__right {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-20%);
     z-index: 200;
   }
 

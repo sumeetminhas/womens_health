@@ -52,37 +52,37 @@
 }
 
 
-.form-answer:nth-of-type(2) {
+.form-answer:nth-of-type(2).external {
   top: 44.5%;
   left: 6%;
 }
 
-.form-answer:nth-of-type(3) {
+.form-answer:nth-of-type(3).external {
   top: 66%;
   left: 5%;
 }
 
-.form-answer:nth-of-type(4) {
+.form-answer:nth-of-type(4).external {
   top: 83%;
   left: 69%;
 }
 
-.form-answer:nth-of-type(5) {
+.form-answer:nth-of-type(5).external {
   top: 54%;
   left: 69%;
 }
 
-.form-answer:nth-of-type(6) {
+.form-answer:nth-of-type(6).external {
   top: 41%;
   left: 68%;
 }
 
-.form-answer:nth-of-type(7) {
+.form-answer:nth-of-type(7).external {
   top: 29%;
   left: 69%;
 }
 
-.form-answer:nth-of-type(8) {
+.form-answer:nth-of-type(8).external {
   top: 2%;
   left: 68%;
 }

@@ -1,8 +1,29 @@
-
-.external-sys {
-  text-decoration: none;
+/* 
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
 }
 
-.internal-sys {
-  text-decoration: none;
+.systems-container {
+  display: flex;
+  flex: 1;
+  padding: 20px;
+  margin-top: 80px;
 }
+
+.ext-container,
+.int-container {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+}
+
+.ext-container {
+  background-color: #f0f0f0;
+}
+
+.int-container {
+  background-color: #e0e0e0;
+} */
