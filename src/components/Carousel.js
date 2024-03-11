@@ -31,7 +31,6 @@ export const Carousel = ({children}) => {
           {children}
         </div>
       
-
       </div>
       <div className="carousel__right" onClick={() => setPosition(position + 1)}></div>
 

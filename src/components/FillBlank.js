@@ -1,53 +1,87 @@
 import React, {useState} from "react";
-// import { Link } from "react-router-dom";
-// import "./FillBlank.css"
+import { Link } from "react-router-dom";
+import "./FillBlank.css"
 // import { ExternalSystem } from "./ExternalSystem.js"
 import { FillBlankCarousel } from "./FillBlankCarousel";
+import ft_left from "./anatomy_pictures/fallopian_tube_left.png";
+import ft_right from "./anatomy_pictures/fallopian_tube_right.png";
+import cervix from "./anatomy_pictures/cervix.png";
+import ovary_left from "./anatomy_pictures/ovary_left.png";
+import ovary_right from "./anatomy_pictures/ovary_right.png";
+import uterus from "./anatomy_pictures/uterus.png";
+import vagina from "./anatomy_pictures/vagina.png";
+import external from "./anatomy_pictures/external.png";
 
 const data = [{
-  image: "image",
-  info: "some info about it"
+  image: ft_left,
+  info: "some info about it",
+  id: 1
 }, {
-  image: "another image",
-  info: "more info"
+  image: ft_right,
+  info: "more info",
+  id: 1
 }, {
-  image: "another image",
-  info: "even more info"
-}
-]
+  image: cervix,
+  info: "even more info",
+  id: 1
+}, {
+  image: ovary_left,
+  info: "even even more info",
+  id: 1
+}, {
+  image: ovary_right,
+  info: "even even even more info",
+  id: 1
+}, {
+  image: uterus,
+  info: "even even even more info",
+  id: 1
+}, {
+  image: vagina,
+  info: "even even even even more info",
+  id: 1
+},{
+  image: external,
+  info: "external info",
+  id: 2
+}]
 
 export const FillInBlank = () => {
 
+  const [ extNumOfResponse, setExtNumOfResponse ] = useState(0);
+  const [ intNumOfResponse, setIntNumOfResponse ] = useState(0);
+
+
+  const internal = data.filter((image) => image.id === 1)
+  const external = data.filter((image) => image.id === 2)
+
+  const handleResponse = () => {
+    setIntNumOfResponse((prevCount) => prevCount + 1)
+    setExtNumOfResponse((prevCount) => prevCount + 1)
+  }
+
   return (
-    <div>
-      <FillBlankCarousel data={data}/>
-    </div>
+    <div className="container">
 
-  )
-}
+      <div className="systems-container" >
 
-      {/* <div className="systems-container">
-        
         <div className="ext-container">
-
-          <div className="body-part-textbox">
-            <div>some text</div>
-            <button>next body part</button>
-          </div>
+          <div>External System</div>
+          <FillBlankCarousel data={external} handleResponse={handleResponse}/>
+          {extNumOfResponse === external.length && <Link className="external-sys" to="/external">external</Link>}
 
         </div>
 
         <div className="int-container">
+          <div>Internal System</div>
+          <FillBlankCarousel data={internal} handleResponse={handleResponse}/>
+            {intNumOfResponse === internal.length && <Link className="internal-sys" to="/internal">internal</Link>}
         </div>
+      </div>
+    </div>
+  )
+}
 
-      </div> */}
-
-
-      {/* <div className="buttons">
-        <Link className="external-sys" to="/external">external</Link>
-        <Link className="internal-sys" to="/internal">internal</Link>
-      </div> */}
-    
 
 
 
