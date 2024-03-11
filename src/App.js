@@ -7,6 +7,8 @@ import { Navbar } from "./components/Navbar";
 import { FillBlank } from './pages/fillblank';
 import { ExternalSystem } from './components/ExternalSystem';
 import { InternalSystem } from './components/InternalSystem';
+import { LearnPage } from './pages/learn';
+import { GamesPage } from './pages/games';
 
 export default function App() {
   return (
@@ -15,10 +17,13 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/puzzle" element={<Puzzle />} />
+        <Route path="/learn" element={<LearnPage />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/fillblank" element={<FillBlank />} />
         <Route path="/external" element={<ExternalSystem />} />
         <Route path="/internal" element={<InternalSystem />} />
+        <Route path="/games" element={<GamesPage />} />
+
 
 
 

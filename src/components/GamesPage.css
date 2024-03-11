@@ -1,0 +1,18 @@
+.games-container {
+  display: grid;
+  width: 50%;
+  height: 250px; 
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  border: 2px solid black;
+  gap: 30px;
+  padding: 15px;
+}
+
+.game-tile {
+  border: 1px solid pink;
+}
+
+.game-tile > a {
+  text-decoration: none;
+}
