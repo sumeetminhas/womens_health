@@ -3,17 +3,26 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   border: 1px solid pink;
-
-
+  width: 80%;
+  height: 500px;
+  margin-top: 80px;
 }
+
 .mod-container {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
-  border: 1px solid black;
+  border: 1px solid blue;
   gap: 10px;
   padding: 15px;
+  width: 20%;
+  grid-auto-rows: 1fr;
 }
 
 .mod {
   border: 1px solid black;
+}
+
+.material {
+  border: 1px solid red;
+  height: 500px;
 }

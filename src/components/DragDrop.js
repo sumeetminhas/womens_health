@@ -11,12 +11,17 @@ import ovary_right from "./anatomy_pictures/ovary_right.png";
 import uterus from "./anatomy_pictures/uterus.png";
 import vagina from "./anatomy_pictures/vagina.png";
 
-function GridCell({onClick, children, correct}) {
+function GridCell({onClick, children, correct, hoverOnCorrect}) {
   return <div className={`grid-cell${(correct && ' correct') || ''}`} onClick={onClick}>
     <div className="t"></div>
     <div className="b"></div>
     <div className="r"></div>
       {children}
+      {correct && (
+        <div>
+          {hoverOnCorrect}
+        </div>
+      )}
     </div>
 }
 
@@ -25,36 +30,51 @@ const photos = [
     id: 0,
     src: ft_left,
     correct: false,
+    tip: "some fact about left ft",
+    fact: "quick overview of left ft"
   },
   {
     id: 4,
     src: cervix,
-    correct: false
+    correct: false,
+    tip: "some fact about cervix",
+    fact: "quick overview of cervix"
   },
   {
     id: 2,
     src: ft_right,
-    correct: false
+    correct: false,
+    tip: "some fact about right ft",
+    fact: "quick overview of right ft"
+
   },
   {
     id: 3,
     src: ovary_left,
-    correct: false
+    correct: false,
+    tip: "some fact about left ovary",
+    fact: "quick overview of left ovary"
   },
   {
     id: 1,
     src: uterus,
-    correct: false
+    correct: false,
+    tip: "some fact about uterus",
+    fact: "quick overview of uterus"
   },
   {
     id: 5,
     src: ovary_right,
-    correct: false
+    correct: false,
+    tip: "some fact about right ovary",
+    fact: "quick overview of right ovary"
   },
   {
     id: 7,
     src: vagina,
-    correct: false
+    correct: false,
+    tip: "some fact about vagina",
+    fact: "quick overview of vagina"
   }
 ]
 
@@ -119,11 +139,16 @@ export const DragDrop = () => {
       <div className={`grid-image ${win? "grid-image--won" : ""}`}>
         {win && <PuzzleWon />  }
         {grid.map((item, index) => (
-          <GridCell key={index} correct={item?.correct} onClick={() => handleGridCellClick(index)}>
+          <GridCell 
+            key={index} 
+            correct={item?.correct} 
+            onClick={() => handleGridCellClick(index)}
+            hoverOnCorrect={item && item.correct && selectedImage && <div className="hover-on-correct">{item.fact}</div>}
+            >
             {item && item.correct  ? (
             <img src={item.src} alt={`Image ${index}`}/>
             ) : (
-              wrongMove && wrongIndex === index && <div className="err-msg"> wrong spot bud</div>
+              wrongMove && wrongIndex === index && selectedImage && <div className="err-msg">{selectedImage.tip}</div>
             )}
           </GridCell>
         ))}

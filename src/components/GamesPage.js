@@ -16,7 +16,7 @@ export const Games = () => {
       </div>
 
       <div className="game-tile">
-        <Link className="puzzle-board" to="/puzzle">puzzle</Link>
+        <Link className="puzzle-board" to="/puzzle1">level 1 puzzle</Link>
       </div>
 
       <div className="game-tile">

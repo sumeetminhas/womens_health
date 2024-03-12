@@ -9,6 +9,7 @@ import { ExternalSystem } from './components/ExternalSystem';
 import { InternalSystem } from './components/InternalSystem';
 import { LearnPage } from './pages/learn';
 import { GamesPage } from './pages/games';
+import { Level1Puzzle } from './pages/level1puzzle';
 
 export default function App() {
   return (
@@ -23,9 +24,7 @@ export default function App() {
         <Route path="/external" element={<ExternalSystem />} />
         <Route path="/internal" element={<InternalSystem />} />
         <Route path="/games" element={<GamesPage />} />
-
-
-
+        <Route path="/puzzle1" element={<Level1Puzzle />} />
 
       </Routes>
     </div>
