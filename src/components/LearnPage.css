@@ -1,7 +1,6 @@
 
 .learn-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   border: 1px solid pink;
   width: 80%;
   height: 500px;
@@ -14,7 +13,7 @@
   border: 1px solid blue;
   gap: 10px;
   padding: 15px;
-  width: 20%;
+  flex: 0 0 20%;
   grid-auto-rows: 1fr;
 }
 
@@ -22,7 +21,8 @@
   border: 1px solid black;
 }
 
-.material {
+.material-container {
+  flex: 1;
   border: 1px solid red;
   height: 500px;
 }

@@ -148,8 +148,20 @@
 }
 
 .grid-cell.correct div {
-  animation: popIn 3s ease;
   background-color: rgb(80, 101, 82);
+}
+
+.grid-cell.correct img {
+  opacity: 1;
+  transition: 1s opacity;
+}
+
+.grid-cell.correct.fadeOut img {
+  opacity: 0;
+}
+
+.hover-on-correct {
+  position: absolute;
 }
 
 .grid-cell .t {
@@ -185,6 +197,11 @@
 .grid-cell.correct {
   background-color: rgb(80, 101, 82);
   animation: popIn 3s ease;
+}
+
+.grid-cell.correct::before {
+  background-color: rgb(80, 101, 82);
+
 }
 
 @keyframes popIn {

@@ -12,16 +12,29 @@ import uterus from "./anatomy_pictures/uterus.png";
 import vagina from "./anatomy_pictures/vagina.png";
 
 function GridCell({onClick, children, correct, hoverOnCorrect}) {
-  return <div className={`grid-cell${(correct && ' correct') || ''}`} onClick={onClick}>
+
+  const [ showHover, setShowHover ] = useState(false)
+
+  const handleMouseEnter = (e) => {
+    e.stopPropagation();
+    setShowHover(true);
+    console.log("mouse enter")
+  }
+
+  const handleMouseLeave = (e) => {
+    e.stopPropagation();
+    setShowHover(false)
+    console.log("mouse leave")
+
+  }
+
+  // console.log("correct:", correct, "show hover:", showHover, "hoverOncorrect:", hoverOnCorrect)
+  return <div className={`grid-cell${(correct && ' correct') || ''} ${showHover && 'fadeOut'}`} onClick={onClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
     <div className="t"></div>
     <div className="b"></div>
     <div className="r"></div>
       {children}
-      {correct && (
-        <div>
-          {hoverOnCorrect}
-        </div>
-      )}
+      { correct && showHover && hoverOnCorrect }
     </div>
 }
 
@@ -131,6 +144,8 @@ export const DragDrop = () => {
     setPreviouslySelected([])
   }
 
+
+  console.log("grid", grid, "selectedImage", selectedImage)
     return (
     <div className="grid">
 
@@ -143,7 +158,7 @@ export const DragDrop = () => {
             key={index} 
             correct={item?.correct} 
             onClick={() => handleGridCellClick(index)}
-            hoverOnCorrect={item && item.correct && selectedImage && <div className="hover-on-correct">{item.fact}</div>}
+            hoverOnCorrect={item && item.correct && <div className="hover-on-correct">{item.fact}</div>}
             >
             {item && item.correct  ? (
             <img src={item.src} alt={`Image ${index}`}/>
