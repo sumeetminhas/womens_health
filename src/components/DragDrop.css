@@ -201,7 +201,6 @@
 
 .grid-cell.correct::before {
   background-color: rgb(80, 101, 82);
-
 }
 
 @keyframes popIn {

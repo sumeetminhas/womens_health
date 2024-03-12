@@ -1,7 +1,8 @@
 import React from "react";
+import { FillInBlank } from "./FillBlank"
 
 export const Module1 = () => {
   return (
-    <div>Module 1</div>
+    <FillInBlank />
   )
 }
