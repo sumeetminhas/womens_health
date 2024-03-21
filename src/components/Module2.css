@@ -1,0 +1,26 @@
+
+.mod2-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ext-img-container {
+  position: relative;
+  width: fit-content;
+}
+
+.ext-img-container img {
+  position: relative;
+}
+
+.ext-img-container > div {
+  position: absolute;
+  width: fit-content;
+  border: 1px solid red;
+}
+
+div.popup {
+  border: 1px solid blue;
+}
+

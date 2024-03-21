@@ -8,11 +8,11 @@ export const Games = () => {
     <div className="games-container">
 
       <div className="game-tile">
-        <Link className="fill-blank" to="/fillblank">label body parts</Link>
+        <Link className="fill-blank" to="/internal">label internal body parts</Link>
       </div>
 
       <div className="game-tile">
-        <Link className="puzzle-board" to="/puzzle">puzzle</Link>
+        <Link className="puzzle-board" to="/puzzle">vulva puzzle</Link>
       </div>
 
       <div className="game-tile">
@@ -20,7 +20,7 @@ export const Games = () => {
       </div>
 
       <div className="game-tile">
-        <Link className="fill-blank" to="/fillblank">label body parts</Link>
+        <Link className="fill-blank" to="/external">label external body parts</Link>
       </div>
       
     </div>

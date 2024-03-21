@@ -40,24 +40,26 @@ const data = [{
   image: vagina,
   info: "even even even even more info",
   id: 1
-},{
-  image: external,
-  info: "external info",
-  id: 2
-}]
+},
+// {
+//   image: external,
+//   info: "external info",
+//   id: 2
+// }
+]
 
 export const FillInBlank = () => {
 
-  const [ extNumOfResponse, setExtNumOfResponse ] = useState(0);
+  // const [ extNumOfResponse, setExtNumOfResponse ] = useState(0);
   const [ intNumOfResponse, setIntNumOfResponse ] = useState(0);
 
 
   const internal = data.filter((image) => image.id === 1)
-  const external = data.filter((image) => image.id === 2)
+  // const external = data.filter((image) => image.id === 2)
 
   const handleResponse = () => {
     setIntNumOfResponse((prevCount) => prevCount + 1)
-    setExtNumOfResponse((prevCount) => prevCount + 1)
+    // setExtNumOfResponse((prevCount) => prevCount + 1)
   }
 
   return (
@@ -65,17 +67,17 @@ export const FillInBlank = () => {
 
       <div className="systems-container" >
 
-        <div className="ext-container">
+        {/* <div className="ext-container">
           <div>External System</div>
           <FillBlankCarousel data={external} handleResponse={handleResponse}/>
           {extNumOfResponse === external.length && <Link className="external-sys" to="/external">external</Link>}
 
-        </div>
+        </div> */}
 
         <div className="int-container">
           <div>Internal System</div>
           <FillBlankCarousel data={internal} handleResponse={handleResponse}/>
-            {intNumOfResponse === internal.length && <Link className="internal-sys" to="/internal">internal</Link>}
+            {intNumOfResponse + 1 === internal.length && <Link className="internal-sys" to="/internal">Test Your Knowledge!</Link>}
         </div>
       </div>
     </div>

@@ -43,7 +43,7 @@ export const FillBlankCarousel = ({ data, handleResponse }) => {
       ))}
 
       <div className="button" onClick={addNewBox}>
-        click
+        next
       </div>
       {console.log("positions.length", positions.length)}
     </div>

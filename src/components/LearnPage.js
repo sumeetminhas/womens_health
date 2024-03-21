@@ -21,16 +21,16 @@ export const Learn = () => {
 
       <div className="mod-container">
         <div className="mod" onClick={() => setReadingMaterial(1)}>
-          <p>mod 1</p>
+          <p>Internal System</p>
         </div>
         <div className="mod" onClick={() => setReadingMaterial(2)}>
-          <p>mod 2</p>
+          <p>External System</p>
         </div>
         <div className="mod" onClick={() => setReadingMaterial(3)}>
-          <p>mod 3</p>
+          <p>Menstrual Cycle</p>
         </div>
         <div className="mod" onClick={() => setReadingMaterial(4)}>
-          <p>mod 4</p>
+          <p>Mod 4</p>
         </div>
 
       </div>
