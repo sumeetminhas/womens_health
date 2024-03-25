@@ -14,31 +14,31 @@ import external from "./anatomy_pictures/external.png";
 
 const data = [{
   image: ft_left,
-  info: "some info about it",
+  info: "The Fallopian Tube.",
   id: 1
 }, {
   image: ft_right,
-  info: "more info",
+  info: "The Fallopian Tube.",
   id: 1
 }, {
   image: cervix,
-  info: "even more info",
+  info: "The cervix.",
   id: 1
 }, {
   image: ovary_left,
-  info: "even even more info",
+  info: "The left ovary.",
   id: 1
 }, {
   image: ovary_right,
-  info: "even even even more info",
+  info: "The right ovary.",
   id: 1
 }, {
   image: uterus,
-  info: "even even even more info",
+  info: "The uterus.",
   id: 1
 }, {
   image: vagina,
-  info: "even even even even more info",
+  info: "The vagina",
   id: 1
 },
 // {

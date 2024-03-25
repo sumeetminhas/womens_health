@@ -22,5 +22,9 @@
 
 div.popup {
   border: 1px solid blue;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  background-color: rgb(176, 191, 176);
 }
 

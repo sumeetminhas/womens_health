@@ -8,8 +8,8 @@ const parts = [{
     left: "15%"
   },
   openStyle: {
-    top: "",
-    left: ""
+    top: "28%",
+    left: "15%"
   },
   part: "labia majora",
   description: "some fact",
@@ -20,8 +20,8 @@ const parts = [{
     left: "15%"
   },
   openStyle: {
-    top: "",
-    left: ""
+    top: "46%",
+    left: "15%"
   },
   part: "labia minora",
   description: "some fact",
@@ -32,8 +32,8 @@ const parts = [{
     left: "10%"
   },
   openStyle: {
-    top: "",
-    left: ""
+    top: "68%",
+    left: "10%"
   },
   part: "bartholin's gland",
   description: "some fact",
@@ -44,8 +44,8 @@ const parts = [{
     left: "72%"
   },
   openStyle: {
-    top: "",
-    left: ""
+    top: "85%",
+    left: "72%"
   },
   part: "anus",
   description: "some fact",
@@ -56,8 +56,8 @@ const parts = [{
     left: "75%"
   },
   openStyle: {
-    top: "",
-    left: ""
+    top: "56%",
+    left: "75%"
   },
   part: "vaginal opening",
   description: "some fact",
@@ -68,8 +68,8 @@ const parts = [{
     left: "75%"
   },
   openStyle: {
-    top: "",
-    left: ""
+    top: "43%",
+    left: "75%"
   },
   part: "urethra",
   description: "some fact",
@@ -80,8 +80,8 @@ const parts = [{
     left: "75%"
   },
   openStyle: {
-    top: "",
-    left: ""
+    top: "30%",
+    left: "75%"
   },
   part: "clitoris",
   description: "some fact",
@@ -92,8 +92,8 @@ const parts = [{
     left: "73%"
   },
   openStyle: {
-    top: "",
-    left: ""
+    top: "4%",
+    left: "73%"
   },
   part: "mons pubis",
   description: "some fact",
@@ -125,7 +125,14 @@ export const Module2 = () => {
               onClick={() => handleClick(i)}
               >{part.part}
             </div>
-            {part.open && <div className="popup">{part.description}</div>}
+            {part.open && 
+              <div className="popup" 
+                style={part.openStyle}
+                onClick={() => handleClick(i)}
+                >
+                  {part.description}
+              </div>
+            }
           </React.Fragment>
 
         ))}
