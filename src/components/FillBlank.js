@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import "./FillBlank.css"
-// import { ExternalSystem } from "./ExternalSystem.js"
 import { FillBlankCarousel } from "./FillBlankCarousel";
 import ft_left from "./anatomy_pictures/fallopian_tube_left.png";
 import ft_right from "./anatomy_pictures/fallopian_tube_right.png";

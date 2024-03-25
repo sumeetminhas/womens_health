@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { ExternalSystem } from "./ExternalSystem.js"
 import external from "./anatomy_pictures/external.png";
 import "./Module2.css";
+import { Link } from "react-router-dom";
 
 const parts = [{
   style: {
@@ -8,12 +10,13 @@ const parts = [{
     left: "15%"
   },
   openStyle: {
-    top: "28%",
-    left: "15%"
+    top: "1.3%",
+    left: "13%"
   },
   part: "labia majora",
   description: "some fact",
-  open: false
+  open: false,
+  hasBeenOpened: false
 },{
   style: {
     top: "46%",
@@ -25,7 +28,8 @@ const parts = [{
   },
   part: "labia minora",
   description: "some fact",
-  open: false
+  open: false,
+  hasBeenOpened: false
 },{
   style: {
     top: "68%",
@@ -37,7 +41,8 @@ const parts = [{
   },
   part: "bartholin's gland",
   description: "some fact",
-  open: false
+  open: false,
+  hasBeenOpened: false
 },{
   style: {
     top: "85%",
@@ -49,7 +54,8 @@ const parts = [{
   },
   part: "anus",
   description: "some fact",
-  open: false
+  open: false,
+  hasBeenOpened: false
 },{
   style: {
     top: "56%",
@@ -61,7 +67,8 @@ const parts = [{
   },
   part: "vaginal opening",
   description: "some fact",
-  open: false
+  open: false,
+  hasBeenOpened: false
 },{
   style: {
     top: "43%",
@@ -73,11 +80,12 @@ const parts = [{
   },
   part: "urethra",
   description: "some fact",
-  open: false
+  open: false,
+  hasBeenOpened: false
 },{
   style: {
     top: "30%",
-    left: "75%"
+    left: "72%"
   },
   openStyle: {
     top: "30%",
@@ -85,7 +93,8 @@ const parts = [{
   },
   part: "clitoris",
   description: "some fact",
-  open: false
+  open: false,
+  hasBeenOpened: false
 },{
   style: {
     top: "4%",
@@ -97,7 +106,8 @@ const parts = [{
   },
   part: "mons pubis",
   description: "some fact",
-  open: false
+  open: false,
+  hasBeenOpened: false
 }]
 
 export const Module2 = () => {
@@ -106,11 +116,13 @@ export const Module2 = () => {
     const handleClick = (i) => {
       setPopups(popups.map((popup, j) => {
         if (i === j ) {
-          return {...popup, open: !popup.open}
+          return {...popup, open: !popup.open, hasBeenOpened: true}
         }
         return popup
       }))
     }
+
+    const allHaveBeenOpened = popups.every((popup) => popup.hasBeenOpened)
 
     return (
     <div className="mod2-container">
@@ -134,9 +146,10 @@ export const Module2 = () => {
               </div>
             }
           </React.Fragment>
-
         ))}
       </div>
+      { allHaveBeenOpened && <Link className="external-sys" to="/external">Test Your Knowledge!</Link> }
     </div>
   )
 }
+

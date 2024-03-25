@@ -17,14 +17,22 @@
 .ext-img-container > div {
   position: absolute;
   width: fit-content;
-  border: 1px solid red;
 }
 
 div.popup {
-  border: 1px solid blue;
+  border: 2px solid black;
   width: 150px;
   height: 150px;
   position: absolute;
-  background-color: rgb(176, 191, 176);
+  background-color: rgb(122, 135, 122);
+  z-index: 100;
+}
+
+.external-sys {
+  text-decoration: none;
+  font-size: 25px;
+  border: 1px solid black;
+  padding: 10px;
+  background-color: rgb(184, 198, 186);
 }
 
