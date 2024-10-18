@@ -15,7 +15,11 @@ export const FillBlankCarousel = ({ data, handleResponse }) => {
   // }
 
   const addNewBox = () => {
-    setPositions([...positions, positions.length])
+    const newPos = [...positions, positions.length]
+    if (newPos.length > data.length) {
+      return 
+    }
+    setPositions(newPos)
     handleResponse();
   }
 
@@ -42,9 +46,9 @@ export const FillBlankCarousel = ({ data, handleResponse }) => {
       </div>
       ))}
 
-      <div className="button" onClick={addNewBox}>
+      { positions.length < data.length && <div className="button" onClick={addNewBox}>
         next
-      </div>
+      </div>}
       {console.log("positions.length", positions.length)}
     </div>
   )

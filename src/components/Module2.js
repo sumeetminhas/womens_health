@@ -132,7 +132,7 @@ export const Module2 = () => {
         {popups.map((part, i) => (
           <React.Fragment key={`popup${i}`}>
             <div 
-              className="learn-more-container"
+              className={`learn-more-container${part.hasBeenOpened ? " opened" : ""}`}
               style={part.style? part.style : {}}
               onClick={() => handleClick(i)}
               >{part.part}

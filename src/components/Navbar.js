@@ -1,16 +1,16 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate} from "react-router-dom";
 import "./Navbar.css";
 
 export const Navbar = () => {
 const location = useLocation()
 console.log(location)
-
+    const navigate = useNavigate()
 
   return (
       <div className={`navbar ${location.pathname === "/" ? "homepage" : ""}`}>
         <div>
-            <h1 >vagtastic learning</h1>
+            <h1 onClick={() => navigate("/")}>vagtastic learning</h1>
             {location.pathname === "/" && <h2> let's learn together </h2>}
         </div>
 
